@@ -1,0 +1,10 @@
+byte_140004508 = b"\x36\x44\x20\x28\x30\x24\x27\x01\x03\x3A\x0B\x0A\x06\x46\x1C\x11\x31\x1B\x08\x08\x07\x26\x36\x08\x1B\x17\x2D\x0D\x1C\x09\x01\x1C\x01\x14"
+key = "nimic_interesant"
+len_key = len(key)
+flag = ""
+
+for i,b in enumerate(byte_140004508):
+    flag += chr(b^ord(key[i%len_key]))
+
+print(flag)
+#X-MAS{Now_you're_ready_for_hohoho}
