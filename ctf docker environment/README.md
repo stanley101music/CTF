@@ -53,7 +53,7 @@ I'd recommend using kali linux vm for forensics since there're many powerful bui
 * [fcrackzip](http://oldhome.schmorp.de/marc/fcrackzip.html)
 * [pngcheck](http://www.libpng.org/pub/png/apps/pngcheck.html)
 
-## Installation
+## Installation & Usage
 * build image
   * ```$ mkdir ctf && docker build -t ctfbox .```
     * create a directory named "ctf" at current location
