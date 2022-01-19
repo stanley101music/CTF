@@ -4,7 +4,7 @@ Hope this document can help people to custom their own container for ctf environ
 * This Dockerfile is modified from u1f383's [Dockerfile](https://github.com/u1f383/Software-Security-2021/blob/master/Dockerfile)
 * It might take a long time to build the image due to the amounts of tools. You can delete those commands in Dockerfile to avoid installing unwanted tools
 
-:warning: I've made a symlink for ```/usr/bin/python3``` as ```/usr/bin/python``` to run sqlmap globally. If you need ```/usr/bin/python``` to be interpreted as python2 or you don't need sqlmap to run globally, you can delete this command in Dockerfile
+> :warning: I've made a symlink for ```/usr/bin/python3``` as ```/usr/bin/python``` to run sqlmap globally. If you need ```/usr/bin/python``` to be interpreted as python2 or you don't need sqlmap to run globally, you can delete this command in Dockerfile
 ## Tools
 Most tools can be runned globally
 ### Crypto
@@ -38,6 +38,10 @@ These tools are located in /Web folder
   * The configuration file ```.gdbinit``` is located at [```gdb_config```](./gdb_config/.gdbinit)
     * Three different commands to run your preferred extension of gdb
     * Some syntax hilighting colors are modified for better experience, especially for terminals that aren't good at rendering dark blue
+  * While interacting by pwntools, you'll need to pass additional arguments to use pwndbg/peda/gef
+    * ```gdb.attach(io, "init-pwndbg")```
+    * ```gdb.attach(io, "init-peda")```
+    * ```gdb.attach(io, "init-gef")```
   * You can learn more about the settings in [this blog](https://infosecwriteups.com/pwndbg-gef-peda-one-for-all-and-all-for-one-714d71bf36b8)
 * [pwntools 4.4.0](https://github.com/Gallopsled/pwntools/tree/stable)
 * [Seccomp Tools](https://github.com/david942j/seccomp-tools)
