@@ -88,7 +88,7 @@ I'd recommend using kali linux vm for forensics since there're many powerful bui
    * Make sure you understand what is [context directory](https://stackoverflow.com/questions/63455621/copy-failed-stat-var-lib-docker-tmp-docker-xxx-no-such-file-or-directory) in docker and how it'll affect the value of arguments in ```COPY```
 2. Make good use of [```WORKDIR```](https://docs.docker.com/engine/reference/builder/#workdir)
 3. [How to mount a local volume that contains invalid characters in Windows](https://stackoverflow.com/questions/35767929/using-docker-via-windows-console-includes-invalid-characters-pwd-for-a-local-v)
-4. Note of the difference in newline between Windows (CR LF) and Unix (LF)
+4. Note the difference in newline between Windows (CR LF) and Unix (LF)
    * Notepad++ can change the format by  ```編輯 -> 換行格式```
    * It can also determine the entire file's format by ```設定 -> 偏好設定 -> 新文件預設設定```
 5. How to configure gdb
