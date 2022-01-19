@@ -1,4 +1,5 @@
 # pwnable.kr writeup
+The difficulty of each challenge is defined based on my experience, and only compared to other challenges in the same category
 * easy
   * Having a general idea of the terms listed in Technique is sufficient to complete the challenge
 * medium
