@@ -94,4 +94,4 @@ I'd recommend using kali linux vm for forensics since there're many powerful bui
 5. How to configure gdb
 6. How to [configure vim theme](https://unix.stackexchange.com/questions/88879/better-colors-so-comments-arent-dark-blue-in-vim)
 7. How to [change the result's color of command ```ls``` by setting .dircolors](https://askubuntu.com/questions/466198/how-do-i-change-the-color-for-directories-with-ls-in-the-console)
-   * Not implemented in these project 
+   * Not implemented in this project 
