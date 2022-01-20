@@ -1,10 +1,10 @@
 # CTF
 ## Contest
-* [DawgCTF](./DawgCTF)
-* [X-MAS](./X-MAS)
-* [hxp](./hxp)
+* [DawgCTF](./Contest/DawgCTF)
+* [X-MAS](./Contest/X-MAS)
+* [hxp](./Contest/hxp)
 ## Practice
-* [pwnable.kr](./pwnable.kr)
+* [pwnable.kr](./Practice/pwnable.kr)
 
 ## Environment
-* [Customed ctfbox](./ctf%20docker%20environment)
+* [CTF Container](./Environment/ctf%20docker%20environment)
