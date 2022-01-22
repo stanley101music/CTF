@@ -61,7 +61,7 @@ I'd recommend using kali linux vm for forensics since there're many powerful bui
 * build image
   * ```$ mkdir ctf && docker build -t ctfbox .```
     * create a directory named "ctf" at current location
-    * build with Dockerfile and name the image "ctfbox
+    * build with Dockerfile and name the image "ctfbox"
 * create container
   * linux platform
     * ```$ docker run -it -d --cap-add=SYS_PTRACE --name ctfbox -v `pwd`/ctf:/ctf ctfbox```
