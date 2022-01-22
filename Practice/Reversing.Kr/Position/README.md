@@ -72,7 +72,7 @@
   v49 + v37 == Serial[10]
   ```
 * Since the amounts of all the possibilities is small, we can brute force each character to get the flag
-* What's more, we can utilize the z3-solver to help solve the equations with conditions
+* What's more, we can utilize the z3-solver to help solve the equations with constraints
 ## Flag
 ```
 bump
