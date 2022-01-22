@@ -2,7 +2,7 @@
 ## Overview
 * 32-bit PE file
 ## File Analysis
-* Use [Ditect It Easy] and find out that it's packed by upx 3.0<br>
+* Use [Ditect It Easy](https://github.com/horsicq/Detect-It-Easy) and find out that it's packed by upx 3.0<br>
   ![](../img/Ransomware%20-%20UPX.png)
 * Unpack it with command ```upx -d run.exe```
 ## Function Analysis
@@ -28,7 +28,7 @@
 * The decrypt ```file``` is also an upx packed file, use the same technique mentioned above to unpack it
 * Since all the symbols aren't stripped, we know which one is main function
 * Another way is to run the ```file``` directly and it should show the key
-  * I get some system error when running ``file```<br>
+  * I get some system error when running ```file```<br>
     ![](../img/Ransomware%20-%20error.png)
     * It should be fixed by download ```MSVCR100D.dll``` but anyway I choose to reverse it
 ## Function Analysis
