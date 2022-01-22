@@ -19,7 +19,7 @@ while ( *result != 1 )
     }
 }
 ```
-* byte_407028 will contain the string that will shows up when we win the game
+* byte_407028 will contain the string that will show up when we win the game
 * Unfortunately, this doesn't seem to be readable string<br>
   ![](../img/Direct3D%20FPS%20-%20byte_407028.png)
 * After finding the cross-reference to this string, it turns out that there's another function which will modify the value of this string
