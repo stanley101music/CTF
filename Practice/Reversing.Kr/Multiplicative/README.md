@@ -90,7 +90,7 @@ public class JavaCrackMe {
      }
 }
 ```
-* There's only one class and two method
+* There's only one class and two methods
 * The main logic part is in L7, L8, L9
 ### L7
 ```java
@@ -103,7 +103,7 @@ L7 {
     lstore1
 }
 ```
-* It'll take an our input from commandline argument and stored it as long type
+* It'll take an input from command line argument and stored it as long type
 ### L8
 ```java
 L8 {
@@ -124,7 +124,7 @@ L9 {
 }
 ```
 * It'll check if the result of multiplication is equal to -1536092243306511225
-* If it matches, Then it'll output "Correct!", otherwise, it'll output "Wrong"
+* If it matches, then it'll output "Correct!", otherwise, it'll output "Wrong"
 
 ## Overflow
 * Although ```-1536092243306511225 % 26729 != 0```, it doesn't mean that it's impossible to find a number such that the equation holds
