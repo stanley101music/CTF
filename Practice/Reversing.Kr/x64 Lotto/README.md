@@ -53,16 +53,16 @@ if ( Succ )
 {
     index = 0;
     v9 = &v25;
-do
-{
-    v10 = *v9;
-    ++v9;
-    v11 = index++ + (v10 ^ 0xF);
-    *(v9 - 1) = v11;
-}
-while ( index < 25 );
-v50 = 0;
-wprintf(L"%s\n", &v25);
+    do
+    {
+        v10 = *v9;
+        ++v9;
+        v11 = index++ + (v10 ^ 0xF);
+        *(v9 - 1) = v11;
+    }
+    while ( index < 25 );
+    v50 = 0;
+    wprintf(L"%s\n", &v25);
 }
 ```
 * The last part is doing some encryption and if everything goes right, it'll output the flag
