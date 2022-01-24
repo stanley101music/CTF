@@ -1,0 +1,3 @@
+account = [0x4E9E, 0x6D32, 0x7D71, 0x795E]
+password = toyz2k7e.3
+FLAG{WIN32_GUI_SO_PAIN}

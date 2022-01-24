@@ -1,0 +1,2 @@
+zip password: passwd
+FLAG{dLL_So_c00L_R1gHT?}
