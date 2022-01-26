@@ -15,5 +15,5 @@
 ## Environment
 * [CTF Container](./Environment/Docker%20CTF%20Container)
 
-## Resources
+## Resource
 * [BambooFox](https://bamboofox.github.io/)
