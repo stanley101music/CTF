@@ -1,0 +1,278 @@
+LEVEL 0: ssh [website] -p [port] -l [login name]
+		 ask for password: enter password
+
+LEVEL 0->1: cat readme (boJ9jbbUNNfktd78OOpsqOltutMc3MY1)
+
+LEVEL 1: exit and ssh again with previous password and user bandit1
+
+LEVEL 1->2: cat ./-  (https://unix.stackexchange.com/questions/16357/usage-of-dash-in-place-of-a-filename)
+
+LEVEL 2->3: cat "spaces in this file"
+
+LEVEL 3->4: find inhere -> cat .inhere
+			or
+			cd inhere -> ls -la -> cat .inhere
+
+LEVEL 4->5: cat ./file00  ~ file09 -> find the readable text
+
+LEVEL 5->6: find . -readable -size 1033c ! -executable -> cat ./.file02 (DXjZPULLxYr17uwoI01bNLQbtFemEgo7)
+
+LEVEL 6->7: find / -user bandit7 -group bandit6 -size 33c -> cat [whatever you found]
+
+LEVEL 7->8: cat data.txt | grep millionth
+			or
+			strings data.txt | grep millionth
+
+LEVEL 8->9: sort data.txt | uniq -u         (uniq only detect duplicates when they are adjacent, use sort to help)
+
+LEVEL 9->10: strings data.txt | grep =      (Since data.txt is a binary file, it's not possible to use cat grep, besides, use strings grep)
+
+LEVEL 10->11: base64 -d data.txt            (decode base64) / (https://en.wikipedia.org/wiki/Base64)
+
+LEVEL 11->12: cat data.txt | tr a-zA-Z n-za-mN-ZA-M   (cat and translate)
+
+LEVEL 12->13: mkdir /tmp/stanley101music -> cp data.txt /tmp/stanley101music -> cd /tmp/stanley101music -> file data.txt
+
+(make new directory in target position) -> (copy data.txt and put in target position) -> (goto target position) -> (detect what kind of file data.txt is)
+
+			  -> xxd -r data.txt newdata -> file newdata -> mv newdata newdata.gz -> gzip -d newdata.gz
+
+(convert a hex dump back to its original binary form and save to a new file) -> (detect file type) -> (find out it's gzip, so change extension to .gz) -> (decompress gzip file)
+
+			  -> file newdata -> mv newdata newdata.bz2 -> bzip2 -d newdata.bz2 
+
+(detect file type) -> (find out it's bzip2, so change extension to .bz2) -> (decompress bzip2 file)
+
+			  -> file newdata -> mv newdata newdata.gz -> gzip -d newdata.gz
+
+(detect file type) -> (find out it's gzip, so change extension to gzip) -> (decompress gzip file)
+
+			  -> file newdata -> tar -xvf newdata
+			
+(detect file type) -> (find out we've a POSIX tar archive, so use tar to  tar is an archiving utility and when used with -x it will extract the data, -v do it verbosely, -f will use archive file)
+
+			  -> file data5.bin -> tar -xvf data5.bin 
+
+(detect file type) -> (find out we've a POSIX tar archive, so use tar -xvf)
+		
+			  -> file data6.bin -> mv data6.bin data7.bz2 -> bzip2 -d data7.bz2
+
+(detect file type) -> (find out it's bzip2,so change extension to .bz2 and save as new file) -> (decompress bzip2 file)
+
+			  -> file data7 -> tar -xvf data7
+
+(detect file type) -> (find out we get another tar, so use tar -xvf)
+
+			  -> file data8.bin -> mv data8.bin data9.gz -> gzip -d data9.gz
+		
+(detect file type) -> (find out it's gzip, so change extension to .gz) -> (decompress gzip file)
+
+			  -> file data9 -> cat data9
+
+(http://note.drx.tw/2008/04/command.html)
+			  
+LEVEL 13->14: ssh -i sshkey.private bandit14@localhost -> cat /etc/bandit_pass/bandit14
+	
+			  (ssh -i [private key] [specified hostname])
+			  (Note: localhost is a hostname that refers to the machine you are working on)
+
+LEVEL 14->15: nc localhost 3000 -> type password -> Enter
+			  or
+			  echo [password] | nc localhost 30000
+			  
+LEVEL 15->16: echo [password] | openssl c_client -quiet -connect localhost:30001
+			  or
+			  echo [password] | openssl c_client -connect localhost:30001 -ign_eof
+			  
+s_client:
+		   This implements a generic SSL/TLS client which can establish a transparent connection to a remote server speaking SSL/TLS. 
+		   It's intended for testing purposes only and provides only rudimentary interface functionality but internally uses mostly all 
+		   functionality of the OpenSSL ssl library.
+-quiet(-ign_eof):    
+		   inhibit printing of session and certificate information.  This implicitly turns on -ign_eof as well.
+		   
+LEVEL 16->17: nmap localhost -p 31000-32000 -> echo [password] | openssl s_client -quiet -connect localhost:[open port]
+			  -> mkdir /tmp/[username] -> cd /tmp/[username] -> touch sshkey.private -> nano/vim sshkey.private -> copy and paste 
+			  -> ssh -i sshkey.private bandit17@localhost -> ERROR!! -> chmod 600 sshkey.private
+			  -> ssh -i sshkey.private bandit17@localhost
+			  
+(use nmap to find what port is open) -> (use ssl to send and find out the right port) -> (use touch to make new file and paste key in it) ->
+(use this file as key and ssh to remote server) -> FAILED!! -> (the security is too low, so use chmod to change it) -> (try again)
+
+
+chmod 600 file – owner can read and write
+chmod 700 file – owner can read, write and execute
+chmod 666 file – all can read and write
+chmod 777 file – all can read, write and execute
+
+(http://www.thinkplexx.com/learn/article/unix/command/chmod-permissions-flags-explained-600-0600-700-777-100-etc)
+		
+
+LEVEL 17->18: diff passwords.new passwords.old -c
+
+		
+LEVEL 18->19: ssh -t bandit18@localhost cat readme -> type [password] 
+			  or
+			  ssh bandit18@localhost cat readme -> type [password]
+
+			  (https://www.ssh.com/ssh/command/#sec-SSH-Command-in-Linux)
+			  (https://blog.gtwang.org/linux/ssh-command-tutorial-and-script-examples/)
+			  
+若連線到遠端的 Linux 伺服器上，只是為了執行單一指令的話，可以直接把要執行的遠端指令放在 ssh 參數的最尾端，這樣在 SSH 連線建立之後，就會自動執行該指令，
+執行完成後自動離開，可讓指令更簡潔。
+
+-t:
+   Force pseudo-terminal allocation.  This can be used to execute arbitrary screen-based programs on a remote machine, which can be very useful, 
+   e.g. when implementing menu services.  Multiple -t options force tty allocation, even if ssh has no local tty.
+   
+LEVEL 19->20: ls-la -> file bandit20-do ->  ./bandit20-do  (the ./ in front means current directory) -> ./bandit20-do id -> ./bandit20-do cat /etc/bandit_pass/bandit20
+
+			  (find information about bandit20-do) -> (Set each NAME to VALUE in the environment and run COMMAND)
+
+			  (https://dynamicparallax.wordpress.com/2015/09/22/bandit-level-19-%E2%86%92-level-20/comment-page-1/)
+			  (https://en.wikipedia.org/wiki/Setuid)
+
+LEVEL 20->21: ls-la -> file suconnect -> echo [password] | nc -l -p [PORT] -> new terminal -> login -> ./suconnect [PORT]-> answer in original terminal
+
+			  (find information about suconnect) -> (send password to port [PORT] and listen for respond) -> (open new terminal and respond the same port)
+			  -> (get answer from the new terminal in the original terminal)
+
+LEVEL 21->22: crontab -l -> cat cronjob_bandit22 -> cat /usr/bin/cronjob_bandit22.sh -> cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+
+			  (http://fecbob.pixnet.net/blog/post/38083139-crontab%E7%94%A8%E6%B3%95%E8%AA%AA%E6%98%8E)
+			  (https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/crontab.html)
+			  
+LEVEL 22->23: cd /etc/cron.d/ -> cat cronjob_bandit23 -> cat /usr/bin/cronjob_bandit23.sh -> whoami -> /usr/bin/cronjob_bandit23.sh
+			  -> receive wrong location -> ERROR!! -> echo I am user bandit23 | md5sum | cut -d ' ' -f 1 -> receive right location -> cat /tmp/[location]
+			  
+			  (find out what is in /usr/bin/cronjob_bandit23.sh which is a shell script) -> (type the command inside and find out i am now user:bandit22)
+			  -> (run the shell script) -> (get wrong location because i'm not user:bandit23) -> (type command inside to claim that you are user:bandit23)
+			  -> (get right location)
+			  
+			  (http://linux.vbird.org/linux_basic/0340bashshell-scripts.php#script)
+			  
+LEVEL 23->24: cd /etc/cron.d/ -> cat cronjob_bandit24 -> cat /usr/bin/cronjob_bandit24.sh -> mkdir /tmp/[file] -> cd /tmp/[file] 
+			  -> vim bandit24.sh -> a -> #!bin/bash cat /etc/bandit_pass/bandit24 >> /tmp/[file]/[file1] -> ESC -> :wq 
+			  -> chmod 777 bandit24.sh -> cd .. -> chmod 777 [file] -> cd [file] -> cp bandit24.sh /var/spool/bandit24 -> cat bandit24 (need to wait)
+			  
+			  (find out what is  /usr/bin/cronjob_bandit24.sh) -> (find out it will execute and delete all shell script in /var/spool/$myname) 
+			  -> (Thus try to create your own shell script and copy it into /var/spool/bandit24, so it'll automatically execute your shell) 
+			  -> (In your shell first line will make sure other knows what kind of interpreter to run) -> (second line is the command to be executed,
+			  here we want to make the password send to our file and read it) ->  (Remember to change the privileges of your file both .sh and the folder
+			  that contains .sh) -> (use 700 to make it readable, writeable, and executable) -> (wait until the procedure is finished, use ls /var/spool/bandit24/
+			  to check. Since when the command is finished all the files at this location should be deleted according to the /usr/bin/cronjob_bandit24.sh) 
+			  -> (Receive answer)
+			  
+chmod 777: 	  readable, writeable, executable
+			  
+			  (https://stackoverflow.com/questions/8967902/why-do-you-need-to-put-bin-bash-at-the-beginning-of-a-script-file)
+			  (https://blog.csdn.net/u013197629/article/details/73608613)
+			  
+LEVEL 24->25: mkdir /tmp/[folder] -> chmod 777 [folder] -> cd /tmp/[folder] -> vim pass.sh -> a/i -> #!/bin/bash -> password=`cat /etc/bandit_pass/bandit24`
+			  -> for ((i=1000;i<=9999;i++)); -> do -> echo "$password $i" | nc localhost 30002 >> result $ -> done -> ESC :wq -> chmod 777 pass.sh
+			  -> ./pass.sh -> ERROR!! ->  before done add sleep [time] -> cat result -> ERROR!! -> sort result | uniq -u 
+			  
+			  (make your own .sh and change the privelege to 777) -> (run .sh) -> (ERROR!! because it's too fast) -> (use sleep [time] to slow down)
+			  -> (get result but too much data) -> (use the technique that the right answer will be uniq)
+			  
+LEVEL 25->26: ls -la -> ssh -i bandit26.sshkey bandit26@localhost -> kick out -> ERROR! -> cat /etc/passwd | grep bandit26 -> cat /usr/bin/showtext
+			  -> resize the window to at most 6 columns height -> connect again  -> v -> :e /etc/bandit_pass/bandit26 
+			  
+			  (use private key to enter) -> (kick out) -> (search for information) -> (find out it use more and get exit(0) in the last line)
+			  -> (Therefore, to not being kick out, just let the code cannot be executed to the exit(0)) -> (Thus resize the window to let more do its job
+			  , that is, only display output to the current window size) -> (Now type 'v' to get into vim mode) -> (edit password file of bandit26) -> (Bingo) 
+			  
+			  (https://kongwenbin.wordpress.com/2016/09/11/overthewire-bandit-level-25-to-level-26/)
+			  (https://blog.csdn.net/xyw_blog/article/details/16861681)
+			  
+What is the /etc/passwd file?
+
+The /etc/passwd file is a text-based database which stores information about users that may log into the system. 
+There are 5 pieces of information to every field:
+
+1. Username: The login name
+2. Information used to validate a user’s password; this field is usually set to ‘x’ or ‘*’ with the actual password being stored in a separate shadow password file.
+3. User identifier number: user by operating system, it need not be unique
+4. Group identifier number: identifies the primary group of the user; all files created by the user may be accessible by this group
+5. Gecos field: commentary that describes the person or account or task etc.
+6. Path to the user’s home directory
+7. Boot shell:The program that is started everytime the user logs into the system. For an interactive user, this is usually one of the systems command line interpreters (shells)
+			  
+			  
+LEVEL 26->27: use same way to login bandit26 -> v -> :set shell ? -> :set shell =/bin/bash -> :!ls -la -> :! ./bandit27-do 
+			  -> :! ./bandit27-do cat /etc/bandit_pass/bandit27
+			  
+			  (check out what kind of shell am i using) -> (the shell is not using /bin/bash, so change it to /bin/bash) -> (now we can type command
+			  in vim after using :!) -> (execute bandit27-do find out it can make you become a bandit27 user) -> (use this to help gaining access to /etc/bandit_pass/bandit27)
+			  
+			  (https://www.linux.com/learn/vim-tips-working-external-commands)
+			  
+LEVEL 27->28: mkdir /tmp/[folder] -> cd /tmp/[folder] -> git init -> git clone ssh://bandit27-git@localhost/home/bandit27-git/repo -> type bandit27 password
+			  -> cd repo -> cat README
+			  
+			  (Be familiar with git command)
+			  
+LEVEL 28->29: use the same way to clone -> cat README.md -> ERROR!! -> git log -> git checkout [right version] -> cat README.md 
+
+			  (find the right version to get the password)
+			  
+LEVEL 29->30: clone -> cat README.md -> ERROR!! -> git log -> ERROR!! -> git show -> ERROR! -> git -branch -a -> git checkout remotes/origin/dev
+			  -> cat README.md
+			  
+			  (nothing found while log and show) -> (try to show all the other branches) -> (Normally, dev stands for development) 
+			  -> (checkout this folder) -> (BINGO)
+			  
+LEVEL 30->31: clone -> git log/show/branch -a -> ERROR!! -> git tag -> git show [output from git tag]
+                                                         -> git show-ref -> git show [output from git show-ref]
+														 
+			  (https://git-scm.com/docs/git-show-ref)
+			  (https://git-scm.com/book/zh-tw/v1/Git-%E5%9F%BA%E7%A4%8E-%E6%A8%99%E7%B1%A4)
+	
+LEVEL 31->32: clone -> cat README.md -> echo "May I come in?" > key.txt -> git add -f key.txt -> git commit -m key.txt -> git push origin master
+
+上傳到遠端版本控制倉庫:
+
+當讀者有想分享出去的專案，可將更新上傳到上游。 
+執行此動作的命令很簡單：git push [remote-name] [branch-name]。 
+若想要上傳 master 分支到 origin 伺服器（再說一次，複製時通常自動設定此名字），接著執行以下命令即可上傳到伺服器： $ git push origin master
+此命令只有在被複製的伺服器開放寫入權限給使用者，而且同一時間內沒有其它人在上傳。 
+若讀者在其它同樣複製該伺服器的使用者上傳一些更新後上傳到上游，該上傳動作將會被拒絕。 
+讀者必須先將其它使用者上傳的資料拉下來並整合進來後才能上傳。
+
+
+difference between > and >> :
+
+The > operator always overwrite existing output files. 
+To append the output of a command to the same file use >> operator as follows:
+			  
+(https://www.cyberciti.biz/faq/howto-save-ouput-of-linux-unix-command-to-file/)
+
+
+Why git add -f ?
+
+The git add command will not add ignored files by default. 
+If any ignored files were explicitly specified on the command line, git add will fail with a list of ignored files. 
+Ignored files reached by directory recursion or filename globbing performed by Git (quote your globs before the shell) will be silently ignored. 
+The git add command can be used to add ignored files with the -f (force) option.
+
+(https://git-scm.com/docs/git-add)
+
+
+Why git commit -m ?
+			  
+-m <msg>
+--message=<msg>
+Use the given <msg> as the commit message. If multiple -m options are given, their values are concatenated as separate paragraphs.
+
+The -m option is mutually exclusive with -c, -C, and -F.
+			  
+(https://git-scm.com/docs/git-commit)			  
+			  
+
+LEVEL 32->33: $0 -> cat /etc/bandit_pass/bandit33
+			  
+			  ($0 give us the interactive bash)
+			  
+			  (https://www.gnu.org/software/bash/manual/html_node/Special-Parameters.html#Special-Parameters)
+			  (https://www.gnu.org/software/bash/manual/html_node/Variable-Index.html#Variable-Index_vr_symbol-3)
+			  (shell script : http://linux.vbird.org/linux_basic/0340bashshell-scripts.php#script)
