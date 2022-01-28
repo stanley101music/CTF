@@ -42,7 +42,7 @@ private void btnDecode_Click(object sender, EventArgs e)
 * This is the function that will be called when the user click the DECODE! button
 * The unreadable string we've seen is ```text3```
 * The flag might be hidden in ```text``` or ```text2```
-* We can set breakpoint before it returns and take a look at the value of each variables
+* We can set breakpoint before it returns and take a look at the value of each variables<br>
   ![](img/C1%20-%20flag.png)
   * The flag is stored in ```text```
 ### Flag
@@ -52,7 +52,7 @@ private void btnDecode_Click(object sender, EventArgs e)
 ### File Analysis
 * It gives a html file and an image
 * The contents of html file is normal
-* The image file hides some php code at the end
+* The image file hides some php code at the end<br>
   ![](img/C2%20-%20php.png)
 ### Function Analysis
 ```php
@@ -114,7 +114,7 @@ if(isset($_POST["\97\49\49\68\x4F\84\116\x68\97\x74\x44\x4F\x54\x6A\97\x76\x61\x
 ![](img/C3%20-%20popad.png)
 * After a few step, there're lots of loops that modifying the bytes of the executable file itself
 * Keep tracking and I find some interesting instructions, It pushes some large integer to the stack and call a function and since this is a 32-bit program, those value on the stack will be the parameters to this specific function
-  * After the loop in this function is finished, we can see the flag in the memory, which is modified by this function
+  * After the loop in this function is finished, we can see the flag in the memory, which is modified by this function<br>
     ![](img/C3%20-%20flag.png)
 ### Flag
 ```such.5h311010101@flare-on.com```

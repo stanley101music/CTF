@@ -3,7 +3,8 @@
 * [DawgCTF](./Contest/DawgCTF)
 * [X-MAS](./Contest/X-MAS)
 * [hxp](./Contest/hxp)
-* [AIS3 EOF](Contest/AIS3%20EOF)
+* [AIS3 EOF](./Contest/AIS3%20EOF)
+* [Flare-On](./Contest/Flare-On)
 
 ## Practice
 * [pwnable.kr](./Practice/pwnable.kr)
