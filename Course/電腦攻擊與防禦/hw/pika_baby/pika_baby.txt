@@ -1,0 +1,44 @@
+<?php
+    $flag = "adlctf{pika_pika_pikachu}";
+    $user = $_GET['user'];
+    $pass = $_GET['pass'];
+    if (!isset($user) || !isset($pass)) {
+        header('Location', "./secret.html");
+    } else {
+        if ($user == "pikachu" && md5($pass) == "0e481756596645574257920728035178") {
+            $text = $flag;
+        } else {
+            $text = "PIKA PIKA.";
+        }
+    }
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PIKA PIKA</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" >
+    <link rel="stylesheet" href="css/rainbow.css">
+</head>
+<body style="height: 100vh;">
+    <div class="text-center d-flex align-items-center justify-content-center" style="height: 100%">
+        <h1 class="rainbow"><?php echo $text;?></h1>
+    </div>
+    <script src="js/jquery-slim.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
+
+看source code有一行是<!-- There is no secret.php, pika.-->
+所以輸入網址http://140.115.59.7:12002/secret.php，會看到要輸入user 和 password
+另外去robots.txt會看到Disallow: /login.php.back
+一樣輸入網址http://140.115.59.7:12002/login.php.back會看到上面的原始碼
+發現有一個flag，輸入之後仍然不是正解
+下面有說user = pikachu 且 md5($pass) = 0e481756596645574257920728035178
+所以回到secret.php，user輸入pikachu
+password的部分這裡是用php裡的md5漏洞問題，他會把0e開頭的hash value都當作0
+所以只要找另一個一樣會hash成0e開頭的值即可(這裡用的是QNKCDZO)
+得到adlctf{md55um_l0053_c0mp4r150n5}
