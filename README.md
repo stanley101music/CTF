@@ -18,3 +18,4 @@
 
 ## Resource
 * [BambooFox](https://bamboofox.github.io/)
+* [Google Hacking](https://www.blackhat.com/presentations/bh-europe-05/BH_EU_05-Long.pdf)
