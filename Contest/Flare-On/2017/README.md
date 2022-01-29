@@ -35,7 +35,7 @@ import codecs
 flag = codecs.encode('PyvragFvqrYbtvafNerRnfl@syner-ba.pbz', 'rot_13')
 ```
 ### Flag
-* ```ClientSideLoginsAreEasy@flare-on.com```
+```ClientSideLoginsAreEasy@flare-on.com```
 
 ## C2
 ### Function Analysis
@@ -103,7 +103,7 @@ for i in range(0x27-1, -1, -1):
 flag = ''.join(flag)
 ```
 ### Flag
-* ```R_y0u_H0t_3n0ugH_t0_1gn1t3@flare-on.com```
+```R_y0u_H0t_3n0ugH_t0_1gn1t3@flare-on.com```
 
 ## C3
 ### Function Analysis
