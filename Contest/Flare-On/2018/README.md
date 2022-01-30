@@ -208,7 +208,7 @@
       ![](img/FL%20-%20brick.png)
 ### Process Analysis
 * After sending the correct password, it'll generate an image and output a character
-  ![](img/65141174.png)
+  ![](img/FLEGGO/65141174.png)
 * Write a script to extract and send all the correct passwords to each executable file, and see what are the generated images and output character<br>
   ![](img/FL%20-%20pass.png)
 * Like the first image, each picture has a number at the top left corner, which might be the order of output character we got from the program
