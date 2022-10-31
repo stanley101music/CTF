@@ -1,5 +1,5 @@
 # CTF Container
-Hope this document can help people to custom their own container for ctf environment
+Hope this document can help people to customize their own container for ctf environment
 ## Description
 * This Dockerfile is modified from u1f383's [Dockerfile](https://github.com/u1f383/Software-Security-2021/blob/master/Dockerfile)
 * It might take a long time to build the image due to the amounts of tools. You can delete those commands in Dockerfile to avoid installing unwanted tools
