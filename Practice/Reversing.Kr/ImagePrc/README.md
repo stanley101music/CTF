@@ -278,8 +278,8 @@ if ( wParam == 100 )
   * There's a while loop keep doing the verification
   * A MessageBoxA with Text = Wrong
 * It's comparing our paint to a Resource loaded by ```FindResourceA(0, (LPCSTR)0x65, (LPCSTR)0x18)``` and ```LoadResource(0, v9)```
-  * We can use [Resource Hacker](http://www.angusj.com/resourcehacker/) to dump this [resource](./Manifest101.bin)
-  * Resource Hacker will labeled each resource with it's ID which is the value of second parameter of FindResourceA. In this case, it's 0x65 = 101. Thus, we can find out which resource is our target file<br>
+  * We can use [Resource Hacker](http://www.angusj.com/resourcehacker/) or [Resource Cracker](https://www.pelock.com/products/resource-cracker) to dump this [resource](./Manifest101.bin)
+  * Resource Hacker or [Resource Cracker](https://www.pelock.com/products/resource-cracker) will labeled each resource with it's ID which is the value of second parameter of FindResourceA. In this case, it's 0x65 = 101. Thus, we can find out which resource is our target file<br>
     ![](../img/ImagePrc%20-%20resource.png)
 * After getting the resource, we need to recreate an image file from this resource file, and we already know the width and hight from WinMain function where width = 200 and hight = 150
   * Write a python script to reconstruct the image and we'll get the flag<br>
